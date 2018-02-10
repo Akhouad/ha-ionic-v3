@@ -1,0 +1,86 @@
+<ion-header *ngIf="!checkPage" class="main-header">
+  <ion-navbar color="primary">
+    <ion-title>{{contentName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only
+              [disabled]="!amountChecked"
+              (click)="sendContents($event)"
+              id="notification-button-nav">
+        Send
+        <ion-badge class="content-number" *ngIf="amountChecked" id="notifications-badge-nav" color="danger">{{ amountChecked }}</ion-badge>
+        <!-- <ion-icon name="send"></ion-icon> -->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-header *ngIf="checkPage" class="main-header">
+  <ion-toolbar color="primary">
+    <ion-buttons start left >
+      <button ion-button (click)="goBackContent()" >
+        <ion-icon name="arrow-back" style="font-size: 25px; margin-left: 12px"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>{{contentName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only
+              [disabled]="!amountChecked"
+              (click)="sendContents($event)"
+              id="notification-button">
+        Send
+        <ion-badge class="content-number" *ngIf="amountChecked" id="notifications-badge" color="danger">{{ amountChecked }}</ion-badge>
+        <!-- <ion-icon name="send"></ion-icon> -->
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content">
+  <ion-searchbar [(ngModel)]="search" #searchbar (ngModelChange)="watchCatsSearch2($event)"></ion-searchbar>
+  
+  <component-loader *ngIf="showLoader"></component-loader>
+
+  <div style="margin-bottom: 13px" *ngFor="let category of categories" class="category" [hidden]="!category['contents'] || !category['contents'].length || searchItem">
+    <ion-item>
+      <ion-label class="cat-heading" [class.bebold]="category['checked']">{{category.name}}</ion-label>
+      <ion-checkbox item-right secondary [(ngModel)]="category['checked']" (ngModelChange)="checkAll(category)" color="primary" checked="false"></ion-checkbox>
+    </ion-item>
+    <div [class.images-container]="categories && categories.length>1">
+      <div class="image-container" [class.mosaic]="categories.length<=1" *ngFor="let content of category['contents']; let _i = index;" >
+        <ion-checkbox [(ngModel)]="content['checked']" (ngModelChange)="checkContent(content, category)"></ion-checkbox>
+        <img (click)="goToExactContent(content['id'])" [class.mosaic]="categories.length<=1" [src]="content['thumbnail_file']" alt=""
+             image-cache>
+        <span style="font-size: 11px;
+                    color: #000;
+                    margin-bottom: -26px;
+                    z-index: 29;
+                    position: absolute;">
+          {{content['name']}}
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div [hidden]="!searchItem">
+    <div style="margin-bottom: 13px" *ngFor="let category of categories" class="category" [hidden]="!category['contents'] || category['contents'] && !category['contents'].length || !category['show']">
+      <ion-item>
+        <ion-label class="cat-heading" [class.bebold]="category['checked']">{{category.name}}</ion-label>
+        <ion-checkbox item-right secondary [(ngModel)]="category['checked']" (ngModelChange)="checkAll(category)" color="dark" checked="false"></ion-checkbox>
+      </ion-item>
+      <div [class.images-container]="categories && categories.length>1">
+        <div class="image-container" [class.mosaic]="categories.length<=1" *ngFor="let content of category['contents']; let _i = index; " [hidden]="!content['show']">
+          <ion-checkbox [(ngModel)]="content['checked']" (ngModelChange)="checkContent(content, category)"></ion-checkbox>
+          <img (click)="goToExactContent(content['id'])" [class.mosaic]="categories.length<=1" [src]="content['thumbnail_file']" alt=""
+               image-cache>
+          <span style="font-size: 11px;
+                      color: #000;
+                      margin-bottom: -26px;
+                      z-index: 29;
+                      position: absolute;">
+            {{content['name']}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

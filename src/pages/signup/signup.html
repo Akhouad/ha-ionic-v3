@@ -1,0 +1,63 @@
+<ion-header class="main-header">
+  <ion-navbar color="primary" text-center>
+    <ion-title text-left>Sign up</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="main-content">
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center margin-top>
+        <div class="logo-cont" text-center>
+          <img center src="assets/img/HighAttendance-Micro.png" width="100"/>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col align-self-center>
+        <form #form="ngForm" (ngSubmit)="SignUpForm()">
+          <label *ngIf="showLabel" stacked style="color: #007DB8">This email must match the email you used to register for the event</label>
+
+          <div class="ha__form">
+            <div class="ha__form-field">
+              <div class="field-icon">
+                <ion-icon ios="ios-contact" md="md-contact"></ion-icon>            
+              </div>
+              <div class="field-input">
+                <ion-item>
+                  <ion-label floating>Registration email</ion-label>
+                  <ion-input (ngModelChange)="inputValid('email', $event)" 
+                              type="email" 
+                              [(ngModel)]="data.email" 
+                              name="title">
+                  </ion-input>
+                </ion-item>
+              </div>
+            </div>
+            <div class="ha__form-field">
+              <div class="field-icon">
+                <ion-icon ios="ios-lock" md="md-lock"></ion-icon>            
+              </div>
+              <div class="field-input">
+                <ion-item>
+                  <ion-label floating>Password</ion-label>
+                  <ion-input (ngModelChange)="inputValid('pass', $event)" 
+                            [(ngModel)]="data.pass" 
+                            [type]="passType" 
+                            name="pass">
+                  </ion-input>
+                </ion-item>
+                <div class="input-icon {{(data.pass.length) ? 'active' : ''}}"
+                    (click)="showPass()">
+                  <ion-icon ios="ios-eye" md="md-eye"></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button ion-button class="button default-btn primary-color-btn full-width-btn" type="submit" block>Sign up</button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+  
+  

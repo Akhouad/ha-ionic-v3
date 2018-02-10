@@ -1,0 +1,74 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <img class="logo" src="assets/img/High_Attendance.png" alt="">
+
+</ion-header>
+
+
+<ion-content padding>
+    <div class="ha__form">
+      <div class="ha__form-field">
+        <div class="field-icon">
+          <ion-icon ios="ios-contact" md="md-contact"></ion-icon>        
+        </div>
+        <div class="field-input">
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input (keydown)="goSecond( $event.target.value, $event.code )"  
+                        type="text" 
+                        [(ngModel)]="data.email" 
+                        (ngModelChange)="input('email', $event)"
+                        #firstInput>
+            </ion-input>
+          </ion-item>
+        </div>
+      </div>
+      <div class="ha__form-field">
+        <div class="field-icon">
+          <ion-icon ios="ios-lock" md="md-lock"></ion-icon>            
+        </div>
+        <div class="field-input">
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input (keydown)="enterSubmit( $event.target.value, $event.code )" 
+                        type="password" 
+                        [(ngModel)]="data.password"
+                        (ngModelChange)="input('password', $event)"
+                        #pass>
+            </ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <span (click)="forgotPassword($event)" class="forgot-pass">Forgot Password?</span>
+          </ion-col>
+          <ion-col>
+            <button [disabled]="!button" (click)="submit($event)" class="button default-btn full-width-btn success-btn">sign in</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="or"><span>Or</span></div>
+      <ion-grid>
+        <ion-col>
+          <button class="button default-btn full-width-btn primary-color-btn" (click)="signUp()">
+            Sign up
+          </button>
+        </ion-col>
+      </ion-grid>
+    </div>
+</ion-content>
+
+<ion-footer padding *ngIf="!keyboardShown">
+  <p>We are here to help. <br>
+  Get support by email or by phone at <br> <a href="">1-800-216-0816</a> <br>
+  <a href="">ask@highattendance.com</a></p>
+</ion-footer>
