@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {Storage} from '@ionic/storage';
 import {GlobalVars} from '../common/globalVars';
 import {AgendaPage} from "../agenda/agenda";
+import {HomePage} from "../home/home";
 export interface User {
   email: string,
   pass: string
@@ -16,7 +17,7 @@ export interface User {
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
@@ -73,7 +74,8 @@ export class SignupPage {
                 userType:data['usertype'],
               };
               this.storage.set("profile", JSON.stringify(GlobalVars.profile)).then(()=>{
-                this.navCtrl.setRoot(AgendaPage);
+                this.navCtrl.setRoot(HomePage);
+                this.navCtrl.pop()
               });
             } else {
               this.emailValMessage = data.error.message;
@@ -140,6 +142,12 @@ export class SignupPage {
             this.onlineCheck = data.email_valid;
           }
         })
+    }
+  }
+
+  private checkMail2(){
+    if(this.data.email.length > 0){
+      this.checkMail(this.data.email)
     }
   }
 

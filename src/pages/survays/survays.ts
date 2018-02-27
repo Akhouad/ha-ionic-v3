@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {GlobalVars} from '../common/globalVars';
 import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
@@ -23,7 +23,7 @@ import {AgendaPage} from "../agenda/agenda";
 /**
  * Generated class for the SurvaysPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-survays',
   templateUrl: 'survays.html',

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
 import {
-  ActionSheetController, App, IonicPage, MenuController, NavController, NavParams, Refresher,
+  ActionSheetController, App, MenuController, NavController, NavParams, Refresher,
   ToastController
 } from 'ionic-angular';
 import {SessionPage} from "../session/session";
@@ -25,7 +25,7 @@ import {ContactDataPage} from "../contact-data/contact-data";
  * Generated class for the AgendaPage page.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-agenda',
   templateUrl: 'agenda.html',

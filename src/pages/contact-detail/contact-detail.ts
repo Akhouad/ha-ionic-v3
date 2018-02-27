@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 import { SocialSharing } from '@ionic-native/social-sharing';
-import {IonicPage, NavController, NavParams, AlertController, ToastController} from 'ionic-angular';
+import {NavController, NavParams, AlertController, ToastController} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {Camera, CameraOptions} from "@ionic-native/camera";
 import {GlobalVars} from '../common/globalVars';
 import {ContactPage} from "../contact/contact";
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-contact-detail',
   templateUrl: 'contact-detail.html',

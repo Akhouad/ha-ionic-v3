@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MenuController, ModalController, NavController, NavParams} from 'ionic-angular';
+import {MenuController, ModalController, NavController, NavParams, LoadingController} from 'ionic-angular';
 import {ExactContentsPage} from "../exact-contents/exact-contents";
 import {CrudProvider} from "../../providers/crud/crud";
 import {SendContentPage} from "../send-content/send-content";
@@ -11,12 +11,15 @@ import {FileOpener} from '@ionic-native/file-opener';
 import {HTTP} from '@ionic-native/http';
 import {FilterPage} from "../filter/filter";
 import {ContentListPage} from "../content-list/content-list";
+import { SERVER_URL } from "../../config";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 @Component({
   selector: 'page-application',
   templateUrl: 'application.html',
 })
 export class ApplicationPage {
+  
 
   protected contents: any;
   protected categoriesList: any;
@@ -24,6 +27,7 @@ export class ApplicationPage {
   protected checkPage: boolean;
   protected contentName: string;
   protected applicationId: number;
+  protected selectedCategory: number;
   cbChecked: string[];
   submitted = false;
   private categories: any[] = [];
@@ -48,6 +52,10 @@ export class ApplicationPage {
   };
 
   showLoader: boolean = true;
+  loading: any;
+  showType: any = 'grid';
+  
+  fileTransfer: FileTransferObject
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -58,14 +66,24 @@ export class ApplicationPage {
               private file: File,
               private fileOpener: FileOpener,
               private http: HTTP,
+              private loadingCtrl: LoadingController,
+              private transfer: FileTransfer,
               protected menuCtrl: MenuController) {
+    this.fileTransfer =  this.transfer.create();
+    // this.loading = null;
+    // this.globalService.loadingCtrl = null
+    
     this.checkPage = false;
     this.contentName = this.navParams.get('content_name');
     this.applicationId = this.navParams.get('application_id');
+    this.selectedCategory = this.navParams.get('category_index');
+
     this.crudProvider.getIndex('contents?application_id=' + this.navParams.get('application_id') + "&", GlobalVars.profile.token)
       .subscribe(data => {
         this.showLoader = false;
-
+        if (this.selectedCategory > -1){
+          data['categories'] = data['categories'].slice(this.selectedCategory, this.selectedCategory+1);
+        }
         this.categoriesList = data['categories'];
         this.contents = data['contents'];
         if (data['categories'].length) {
@@ -75,6 +93,7 @@ export class ApplicationPage {
             this.watchCats("");
           });
           this.categories.splice(-1,1);
+          this.markChecked(this.categories);
         } else {
           this.categories = [{name: 'Contents', contents: data['contents'], id: 'nocat'}];
         }
@@ -83,6 +102,48 @@ export class ApplicationPage {
       this.checkPage = this.navParams.get('checkPage');
     }
     this.cbChecked = [];
+  }
+  
+  ionViewWillEnter(){
+    // console.log('Will enter ..');
+    if (this.categories && this.categories.length > 0){
+      this.markChecked(this.categories);
+    }
+    this.updateCounter();
+  }
+  
+  /**
+   * Update the cart counter by considering
+   * the items in the selectedContent Array
+   */
+  updateCounter(){
+    this.amountChecked = this.globalService.getContents().length || 0;
+  }
+  /**
+   * Consider cart and mark content as checked
+   *
+   * @param categories: the categories that are going to by rendered in the view.
+   */
+  markChecked(categories){
+    let selectedContents = this.globalService.getContents();
+
+    this.updateCounter();
+
+    categories = categories || [];
+    categories.forEach(category => {
+      category.contents = category.contents || [];
+      category.contents.map(e =>{
+        let found = selectedContents.find(element => {
+          // console.log(element, e);
+          return element.id === e.id;
+        });
+        e.checked = found || false;
+      });
+    })
+    if(this.selectedCategory > -1){
+      if(this.isAllChecked(categories[this.selectedCategory])) 
+        categories[this.selectedCategory].checked = true
+    } 
   }
 
   /**
@@ -173,14 +234,14 @@ export class ApplicationPage {
       category['contents'].forEach((item, index) => {
         if (!item['checked']) {
           item['checked'] = true;
-          this.checkContent(item)
+          this.checkContent(item, category)
         }
       })
     } else {
       category['contents'].forEach((item, index) => {
         if (item['checked']) {
           item['checked'] = false;
-          this.checkContent(item)
+          this.checkContent(item, category)
         }
       })
     }
@@ -193,13 +254,15 @@ export class ApplicationPage {
    */
   checkContent(content, cat = false) {
     if (content['checked']) {
-      this.amountChecked++;
+      // this.amountChecked++;
       this.globalService.addContent(content);
     }
     else {
-      this.amountChecked--;
+      // this.amountChecked--;
       this.globalService.removeContent(content['id']);
     }
+
+    this.updateCounter();
 
     if (cat) {
       cat['checked'] = this.isAllChecked(cat);
@@ -222,14 +285,18 @@ export class ApplicationPage {
 
     modal.present();
     modal.onWillDismiss(data => {
-      this.categories.forEach(cat => {
-        cat['checked'] = false;
-      });
-      this.contents.forEach(content => {
-        content['checked'] = false;
-
-      });
-      this.amountChecked = 0;
+        this.categories.forEach(cat => {
+          cat['checked'] = false;
+        });
+      // No Need to clear. Views are monitoring the
+      // the content of the selectedContents Array
+      //
+      // this.contents.forEach(content => {
+      //   content['checked'] = false;
+      //
+      // });
+      // this.amountChecked = 0;
+      this.markChecked(this.categories);
     })
   }
 
@@ -299,20 +366,31 @@ export class ApplicationPage {
    * @param content_id
    */
   protected goToExactContent(content_id) {
+    // this.loading = this.loadingCtrl.create({
+    //   content: 'Opening file...'
+    // });
+    // this.loading.present()
+    this.globalService.getLoad(true);
     this.crudProvider.getIndex('contents/' + content_id + "?", GlobalVars.profile.token)
       .subscribe(data => {
-        let name = data.content.name.replace(/\s+/g, '-') + '.pdf';
+        let name = this.globalService.normalizeFilename(data.content.name, 'pdf');
         switch (data.content.file_type) {
           case 'video':
+            this.globalService.getLoad(false);
           case 'website':
+            this.globalService.getLoad(false);
           case 'vimeo':
+            this.globalService.getLoad(false);
           case 'youtube':
+            this.globalService.getLoad(false);
             this.openUrl(data.content.file_path[0]);
             break;
           case 'pdf':
             this.downloadPdf(data.content.url, name);
+            // this.showDownload(this.file.dataDirectory + name);
             break;
           default:
+            this.globalService.getLoad(false);
             this.navCtrl.push(ExactContentsPage, {
               data: data.content.file_path
             });
@@ -324,17 +402,28 @@ export class ApplicationPage {
   /**
    * @param data
    * @param name
-   */
+   */  
   public downloadPdf(data, name) {
     this.globalService.getLoad(true);
-    this.http.downloadFile(data, {}, {}, this.file.dataDirectory + name)
-      .then((data) => {
-        this.showDownload(this.file.dataDirectory + name);
-        this.globalService.getLoad(false);
-      })
-      .catch(error => {
-        this.globalService.getLoad(false);
-      });
+    this.fileTransfer.download(data, this.file.dataDirectory + name).then((entry) => {
+      console.log('download complete: ' + entry.toURL());
+      this.showDownload(this.file.dataDirectory + name);
+      this.globalService.getLoad(false);
+    }, (error) => {
+      console.log("download error")
+      this.globalService.getLoad(false);
+    });
+    // this.globalService.getLoad(true);
+    // this.http.downloadFile(data, {}, {}, this.file.dataDirectory + name)
+    //   .then((data) => {
+    //     console.log(data)
+    //     // this.showDownload(this.file.dataDirectory + name);
+    //     // this.globalService.getLoad(false);
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //     // this.globalService.getLoad(false);
+    //   });
   }
 
   /**
@@ -372,12 +461,28 @@ export class ApplicationPage {
       });
     profileModal.present();
   }
-
+  
+  /**
+   * Open the Application Page for a selected category
+   *
+   * @param category: The index of the selected category;
+   */
+  private openApplicationForCategory(category){
+    this.navCtrl.push(ApplicationPage, {
+      application_id: this.applicationId,
+      content_name: this.contentName,
+      category_index: category
+    });
+  }
   /**
    * @return void
    */
   protected goBackContent() {
     this.menuCtrl.enable(false, "hamburger-menu");
     this.navCtrl.setRoot(ContentListPage);
+  }
+
+  private toggleView(type){
+    this.showType = type
   }
 }

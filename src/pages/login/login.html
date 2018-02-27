@@ -53,7 +53,10 @@
             <span (click)="forgotPassword($event)" class="forgot-pass">Forgot Password?</span>
           </ion-col>
           <ion-col>
-            <button [disabled]="!button" (click)="submit($event)" class="button default-btn full-width-btn success-btn">sign in</button>
+            <button [disabled]="!button || loading" (click)="submit($event)" class="button default-btn full-width-btn success-btn">
+              <ion-spinner *ngIf="loading"></ion-spinner>                
+              <span *ngIf="!loading">sign in</span>
+            </button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -66,10 +69,11 @@
         </ion-col>
       </ion-grid>
     </div>
+
+    <div class="login-footer" *ngIf="!keyboardShown == true">
+      <p>We are here to help. <br>
+        Get support by email or by phone at <br> <a href="">1-800-216-0816</a> <br>
+        <a href="">ask@highattendance.com</a></p>
+    </div>
 </ion-content>
 
-<ion-footer padding *ngIf="!keyboardShown">
-  <p>We are here to help. <br>
-  Get support by email or by phone at <br> <a href="">1-800-216-0816</a> <br>
-  <a href="">ask@highattendance.com</a></p>
-</ion-footer>

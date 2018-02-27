@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, Refresher} from 'ionic-angular';
+import {NavController, NavParams, ToastController, Refresher} from 'ionic-angular';
 import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scanner";
 import {CrudProvider} from "../../providers/crud/crud";
 import {ParticipantsPage} from "../participants/participants";
 import {GlobalVars} from '../common/globalVars';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-session',
   templateUrl: 'session.html',

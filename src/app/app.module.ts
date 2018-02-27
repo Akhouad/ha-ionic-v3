@@ -48,6 +48,9 @@ import { ExactContentsPage } from '../pages/exact-contents/exact-contents';
 import { FilterPage } from '../pages/filter/filter';
 import { SendContentPage } from '../pages/send-content/send-content';
 import { ExactCategoriesPage } from '../pages/exact-categories/exact-categories';
+import { ExactMapPage } from '../pages/exact-map/exact-map';
+import { SearchMorePage } from '../pages/search-more/search-more';
+import { ExhibitorPage } from '../pages/exhibitor/exhibitor';
 
 import { LoaderComponent } from '../components/loader/loader';
 
@@ -62,6 +65,7 @@ import { InAppBrowser } from "@ionic-native/in-app-browser";
 import {AppVersion} from '@ionic-native/app-version';
 import { SearchProvider } from '../providers/search/search';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 
 @NgModule({
@@ -101,7 +105,10 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     ExactContentsPage,
     FilterPage,
     SendContentPage,
-    ExactCategoriesPage
+    ExactCategoriesPage,
+    ExactMapPage,
+    SearchMorePage,
+    ExhibitorPage
   ],
   imports: [
     BrowserModule,
@@ -147,7 +154,10 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     ExactContentsPage,
     FilterPage,
     SendContentPage,
-    ExactCategoriesPage
+    ExactCategoriesPage,
+    ExactMapPage,
+    SearchMorePage,
+    ExhibitorPage
   ],
   providers: [
     StatusBar,
@@ -170,7 +180,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     Contacts,
     LoaderComponent,
     FileOpener,
-    File
+    File,
+    FileTransfer
   ]
 })
 export class AppModule {}

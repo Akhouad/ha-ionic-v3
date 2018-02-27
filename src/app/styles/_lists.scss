@@ -24,6 +24,16 @@
             border-left:solid 2px $light-gray;
             color: $success-color;
         }
+        
+        &.no-padding{
+            .label-md{
+                margin:0!important
+            }
+
+            .text-area, .button-area{
+                padding: 10px;
+            }   
+        }
     }
 }
 

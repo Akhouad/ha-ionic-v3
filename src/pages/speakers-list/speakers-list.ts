@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {SpeakerPage} from "../speaker/speaker";
 import {GlobalVars} from '../common/globalVars';
@@ -22,7 +22,7 @@ import {AgendaPage} from "../agenda/agenda";
 /**
  * Generated class for the SpeakersListPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-speakers-list',
   templateUrl: 'speakers-list.html',

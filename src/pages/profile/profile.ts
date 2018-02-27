@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {CompaniesPage} from "../companies/companies";
 import {GlobalVars} from '../common/globalVars';
@@ -7,7 +7,7 @@ import {GlobalVars} from '../common/globalVars';
 /**
  * Generated class for the ProfilePage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',

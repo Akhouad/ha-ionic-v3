@@ -70,6 +70,22 @@ export class HomePage {
 
     this.crudProvider.getIndex('events?company_id=' + this.company_id + '&', GlobalVars.profile.token)
       .subscribe(data => {
+        if(data.currentEvents.length + data.pastEvents.length + data.futureEvents.length == 1){
+          
+          let id, exhibit, application, sessions, root
+          let onlyEvent
+
+          if(data.currentEvents.length) onlyEvent = data.currentEvents
+          if(data.pastEvents.length) onlyEvent = data.currentEvents
+          if(data.futureEvents.length) onlyEvent = data.currentEvents
+          id = onlyEvent[0]['id']
+          exhibit = onlyEvent[0]['exhibit']
+          application = onlyEvent[0]['application']
+          sessions = onlyEvent[0]['sessions'].length
+          root = onlyEvent[0]['root']
+
+          this.goExactEvent(id, exhibit, application, sessions, root)
+        }
         this.showLoader = false;
         this.pastEvents = data.pastEvents;
         if (this.pastEvents.length < 1) {

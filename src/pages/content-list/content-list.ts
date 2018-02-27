@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActionSheetController, IonicPage, MenuController, NavController, NavParams} from 'ionic-angular';
+import {ActionSheetController, MenuController, NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {ApplicationPage} from "../application/application";
 import {GlobalVars} from '../common/globalVars';
@@ -21,7 +21,7 @@ import {AgendaPage} from "../agenda/agenda";
 /**
  * Generated class for the ContentListPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-content-list',
   templateUrl: 'content-list.html',

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {ContactPage} from "../contact/contact";
 import {Camera, CameraOptions} from "@ionic-native/camera";
 import {CrudProvider} from "../../providers/crud/crud";
@@ -8,7 +8,7 @@ import {GlobalVars} from '../common/globalVars';
 /**
  * Generated class for the ContactDataPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-contact-data',
   templateUrl: 'contact-data.html',

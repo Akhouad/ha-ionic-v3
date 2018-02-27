@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {GlobalVars} from "../common/globalVars";
 import {TopLeaderBoardPage} from "../top-leader-board/top-leader-board";
@@ -24,7 +24,7 @@ import {AgendaPage} from "../agenda/agenda";
 /**
  * Generated class for the LeaderBoardPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-leader-board',
   templateUrl: 'leader-board.html',

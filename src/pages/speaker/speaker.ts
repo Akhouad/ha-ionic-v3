@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {GlobalVars} from '../common/globalVars';
 
 /**
  * Generated class for the SpeakerPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-speaker',
   templateUrl: 'speaker.html',

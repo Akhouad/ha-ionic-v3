@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {GlobalVars} from '../common/globalVars';
 import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser';
@@ -7,7 +7,7 @@ import { InAppBrowserOptions, InAppBrowser } from '@ionic-native/in-app-browser'
 /**
  * Generated class for the SponsorPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-sponsor',
   templateUrl: 'sponsor.html',

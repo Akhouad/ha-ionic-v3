@@ -35,20 +35,17 @@ page-login {
             background-color: $light-gray;
             transform:skewY(15deg);
         }
-    }
 
-    ion-footer{
-        &:before{
-            display:none;
-        }
-
-        p, a{
-            color:rgba($text-color, .5);
-            line-height:20px;
-        }
-
-        p{
-            padding: 0 10px;
+        .login-footer{
+            margin-top: 100px;
+            p, a{
+                color:rgba($text-color, .5);
+                line-height:20px;
+            }
+    
+            p{
+                padding: 0 10px;
+            }
         }
     }
 }

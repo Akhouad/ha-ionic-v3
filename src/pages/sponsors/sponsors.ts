@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {GlobalVars} from '../common/globalVars';
 import {SponsorPage} from '../sponsor/sponsor';
@@ -23,7 +23,7 @@ import {AgendaPage} from "../agenda/agenda";
 /**
  * Generated class for the SponsorsPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-sponsors',
   templateUrl: 'sponsors.html',

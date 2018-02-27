@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {Storage} from '@ionic/storage';
 import {HomePage} from "../home/home";
@@ -12,7 +12,7 @@ import {GlobalVars} from '../common/globalVars';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-companies',
   templateUrl: 'companies.html',

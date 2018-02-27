@@ -112,37 +112,19 @@
 }
 
 .ha__form{
-    margin-top:50px;
-    
     .forgot-pass{
         line-height:50px;
-        // color:#4B67FF;
         color:rgba(black, .45);
     }
 
     .or{
         text-align:center;
-        position:relative;
-
-        &:before{
-            content:'';
-            position:absolute;
-            top:50%;
-            left:50%;
-            transform:translate(-50%, -50%);
-            height:1px;
-            width:50px;
-            background-color: $primary-color;
-            z-index: 0;
-        }
 
         span{
-            background-color: #ffff;
             height:40px;
             display:inline-block;
             line-height:40px;
             padding:0 10px;
-            position:relative;
             color:rgba(black, .45);
         }
     }
@@ -151,5 +133,18 @@
 ion-searchbar{
     .searchbar-input{
         box-shadow:0 5px 10px rgba(black, .1)!important;
+    }
+}
+
+ion-checkbox{
+    .checkbox-icon{
+        border-width: 1px!important;
+        border-color: $dark-gray!important;
+
+        &.checkbox-checked{
+            background-color: $success-color!important;
+            border-color:$success-color!important;
+            box-shadow: 0 0 5px rgba($success-color, .5);
+        }
     }
 }

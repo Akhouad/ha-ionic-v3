@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {NavController, NavParams, ViewController} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scanner";
 import {SearchProvider} from "../../providers/search/search";
@@ -10,7 +10,7 @@ import {AgendaPage} from "../agenda/agenda";
 /**
  * Generated class for the SendContentPage page.
  */
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-send-content',
   templateUrl: 'send-content.html',

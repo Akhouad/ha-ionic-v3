@@ -15,8 +15,6 @@ export class LoaderComponent {
   text: string;
 
   constructor() {
-    console.log('Hello LoaderComponent Component');
-    this.text = 'Hello World';
   }
 
 }

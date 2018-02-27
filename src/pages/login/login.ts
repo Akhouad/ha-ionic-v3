@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { GlobalProvider } from "../../providers/global/global";
 import { AuthProvider } from "../../providers/auth/auth";
 import { GlobalVars } from '../common/globalVars';
@@ -16,7 +16,7 @@ export interface AuthUser {
   password?: string
 }
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -30,7 +30,7 @@ export class LoginPage {
     password: ""
   };
   private loading: boolean = false;
-  private keyboardShown:boolean;
+  private keyboardShown:boolean = false;
 
   constructor(
     public navCtrl: NavController, private alertCtrl: AlertController,
@@ -41,18 +41,20 @@ export class LoginPage {
     protected globalService: GlobalProvider,
     private intercom: Intercom
   ) {
-    this.keyboardShown = false;
+    this.keyboard.show()
   }
 
   ionViewDidLoad() {
+    
     this.keyboard.onKeyboardShow().subscribe(()=>{
+      console.error("this.keyboard")
       this.keyboardShown = true;
-
     });
+    
     this.keyboard.onKeyboardHide().subscribe(()=>{
       this.keyboardShown = false;
-
     });
+    
   }
   
   /**
@@ -178,6 +180,10 @@ export class LoginPage {
    */
   protected signUp() {
     this.navCtrl.push(SignupPage);
+  }
+
+  footerStyle(){
+    return { 'display': (!this.keyboardShown) ? 'block' : 'none' }
   }
 
 }

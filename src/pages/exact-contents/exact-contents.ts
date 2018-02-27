@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {CrudProvider} from "../../providers/crud/crud";
 import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import { ViewChild } from '@angular/core';
@@ -7,7 +7,7 @@ import { Slides } from 'ionic-angular';
 import {ApplicationPage} from "../application/application";
 import {ExactCategoriesPage} from "../exact-categories/exact-categories";
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-exact-contents',
   templateUrl: 'exact-contents.html',

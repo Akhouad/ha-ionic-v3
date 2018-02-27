@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController} from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import {AuthUser, LoginPage} from "../login/login";
 import {AuthProvider} from "../../providers/auth/auth";
 
@@ -10,7 +10,7 @@ import {AuthProvider} from "../../providers/auth/auth";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-forgot-password',
   templateUrl: 'forgot-password.html',

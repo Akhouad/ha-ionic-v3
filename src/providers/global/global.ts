@@ -28,11 +28,12 @@ export class GlobalProvider {
     company: "",
     title: ""
   };
-
-  public loading = this.loadingCtrl.create({
-    content: 'Loading Please Wait...',
-    enableBackdropDismiss: true
-  });
+  
+  public loading: any = null;
+  // public loading = this.loadingCtrl.create({
+  //   content: 'Loading Please Wait...',
+  //   enableBackdropDismiss: true
+  // });
 
   constructor(
     private alertCtrl: AlertController,
@@ -86,6 +87,22 @@ export class GlobalProvider {
       toPush['applications'] = content['applications'];
       this.selectedContents.push(toPush);
     }
+  }
+  
+  /**
+   * normalizeFilename method
+   *  1. Removes special characters
+   *  2. Trims whitespaces
+   *  3. Replaces whitespaces with hyphens
+   *  4. Keeps only the first 20 characters
+   *
+   * @param filename the filename to be normalized
+   * @param ext the extension
+   *
+   */
+  public normalizeFilename(filename, ext){
+    filename = filename || '';
+    return filename.replace( /[<>:"\/\\|?*]+/g, '' ).trim().replace(/\s+/g, '-').substring(0,20) + '.' + ext;
   }
 
   /**
@@ -215,17 +232,31 @@ export class GlobalProvider {
     this.position['date'] = Date.now();
     return this.position;
   }
+  
+  /**
+   * Creates a spinner instance
+   */
+  private createLoading(){
+    return this.loadingCtrl.create({
+        content: 'Loading Please Wait...',
+        enableBackdropDismiss: true
+      });
+  }
 
   /**
    * return void
    */
   public getLoad(check) {
-    if (check) {
+    // Show only if not already active
+    if (check && !this.loading) {
+      this.loading = this.loading || this.createLoading();
       this.loading.present();
     }
 
-    if(!check) {
+    // Hide only if is already active
+    if(!check && !!this.loading) {
       this.loading.dismiss();
+      this.loading = null;
     }
 
     return true;

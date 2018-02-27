@@ -42,3 +42,12 @@ rating{
 .no-margin-right{margin-right:0!important}
 .no-margin-top{margin-top:0!important}
 .no-margin-bottom{margin-bottom:0!important}
+
+
+.keyboard-is-open ion-footer{
+    display:none!important;
+}
+
+.keyboard-is-open .scroll-content {
+    margin-bottom: 0 !important;
+}

@@ -26,10 +26,13 @@
               <div class="field-input">
                 <ion-item>
                   <ion-label floating>Registration email</ion-label>
-                  <ion-input (ngModelChange)="inputValid('email', $event)" 
-                              type="email" 
+                  <ion-input  type="email" 
                               [(ngModel)]="data.email" 
                               name="title">
+                  <!-- <ion-input (ngModelChange)="inputValid('email', $event)" 
+                              type="email" 
+                              [(ngModel)]="data.email" 
+                              name="title"> -->
                   </ion-input>
                 </ion-item>
               </div>
@@ -43,6 +46,7 @@
                   <ion-label floating>Password</ion-label>
                   <ion-input (ngModelChange)="inputValid('pass', $event)" 
                             [(ngModel)]="data.pass" 
+                            (ionFocus)="checkMail2()"
                             [type]="passType" 
                             name="pass">
                   </ion-input>
@@ -54,7 +58,7 @@
               </div>
             </div>
           </div>
-          <button ion-button class="button default-btn primary-color-btn full-width-btn" type="submit" block>Sign up</button>
+          <button ion-button class="button default-btn success-btn full-width-btn" type="submit" block>Sign up</button>
         </form>
       </ion-col>
     </ion-row>

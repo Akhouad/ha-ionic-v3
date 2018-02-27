@@ -108,7 +108,7 @@ export class MyApp {
     private globalService: GlobalProvider
   ) {
     platform.ready().then(() => {
-      statusBar.styleDefault();
+      statusBar.backgroundColorByHexString('#1c2443');
       splashScreen.hide();
 
       this.config.set( 'scrollPadding', false )
@@ -208,14 +208,14 @@ export class MyApp {
     }).catch(() => {
       this.rootPage = LoginPage;
     });
-    // this.cameraOptions = {
-    //   quality: 20,
-    //   destinationType: this.camera.DestinationType.DATA_URL,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE,
-    //   targetWidth: 1000,
-    //   targetHeight: 1000
-    // };
+    this.cameraOptions = {
+      quality: 20,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetWidth: 1000,
+      targetHeight: 1000
+    };
 
     this.qr = [];
 
