@@ -20,7 +20,7 @@
         </div>
         <div class="field-input">
           <ion-item>
-            <ion-label floating>Email</ion-label>
+            <ion-label floating>Email Address</ion-label>
             <ion-input (keydown)="goSecond( $event.target.value, $event.code )"  
                         type="text" 
                         [(ngModel)]="data.email" 
@@ -71,9 +71,12 @@
     </div>
 
     <div class="login-footer" *ngIf="!keyboardShown == true">
-      <p>We are here to help. <br>
-        Get support by email or by phone at <br> <a href="">1-800-216-0816</a> <br>
-        <a href="">ask@highattendance.com</a></p>
+      <p>
+          To request access to this app please email: 
+          <strong>Lauren Garvey </strong>at 
+          <br>
+          <span><a href="mailto:lauren.garvey@dentwizard.com?Subject=Fron%20Dent%20Wizard%20App:">lauren.garvey@dentwizard.com</a></span>
+      </p>
     </div>
 </ion-content>
 

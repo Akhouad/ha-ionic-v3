@@ -31,7 +31,6 @@
     "@ionic-native/geolocation": "^4.5.3",
     "@ionic-native/http": "^4.5.3",
     "@ionic-native/in-app-browser": "^4.5.3",
-    "@ionic-native/intercom": "^4.5.3",
     "@ionic-native/keyboard": "^4.5.3",
     "@ionic-native/network": "^4.5.3",
     "@ionic-native/social-sharing": "^4.5.3",
@@ -50,7 +49,6 @@
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-inappbrowser": "^2.0.2",
-    "cordova-plugin-intercom": "^5.1.1",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-network-information": "^2.0.1",
     "cordova-plugin-splashscreen": "^4.1.0",
@@ -80,7 +78,6 @@
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
-      "cordova-plugin-intercom": {},
       "cordova-plugin-advanced-http": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-app-version": {},
@@ -99,7 +96,8 @@
       "cordova-plugin-statusbar": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

@@ -3,7 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { GlobalProvider } from "../../providers/global/global";
 import { AuthProvider } from "../../providers/auth/auth";
 import { GlobalVars } from '../common/globalVars';
-import { Intercom } from '@ionic-native/intercom';
+// import { Intercom } from '@ionic-native/intercom';
 import { Storage } from '@ionic/storage';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -39,7 +39,7 @@ export class LoginPage {
     private keyboard:Keyboard,
     public navParams: NavParams,
     protected globalService: GlobalProvider,
-    private intercom: Intercom
+    // private intercom: Intercom
   ) {
     this.keyboard.show()
   }
@@ -120,8 +120,8 @@ export class LoginPage {
           userType: res['usertype'],
           email:this.data.email
         };
-        this.intercom.registerIdentifiedUser({ email: this.data.email });
-        this.intercom.setLauncherVisibility('GONE');
+        // this.intercom.registerIdentifiedUser({ email: this.data.email });
+        // this.intercom.setLauncherVisibility('GONE');
         this.storage.set('profile', JSON.stringify(GlobalVars.profile)).then(
           ()=>{
             GlobalVars.LoginPage = false;

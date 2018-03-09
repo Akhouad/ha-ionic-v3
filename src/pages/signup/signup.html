@@ -7,7 +7,7 @@
   <ion-grid>
     <ion-row>
       <ion-col align-self-center margin-top>
-        <div class="logo-cont" text-center>
+        <div class="logo-cont">
           <!-- <img center src="assets/img/HighAttendance-Micro.png" width="100"/> -->
           <img class="logo" src="assets/img/logo_blue.png" style="height:60px;width:auto;opacity:1" alt="">
         </div>
@@ -25,7 +25,7 @@
               </div>
               <div class="field-input">
                 <ion-item>
-                  <ion-label floating>Registration email</ion-label>
+                  <ion-label floating>Email Address</ion-label>
                   <ion-input  type="email" 
                               [(ngModel)]="data.email" 
                               name="title">
@@ -60,6 +60,11 @@
           </div>
           <button ion-button class="button default-btn success-btn full-width-btn" type="submit" block>Sign up</button>
         </form>
+        <p class="signup-text">
+            You must be added as a user in the system before you can sign up. If you receive an error with your email address, please contact Lauren Garvey at 
+            <br>
+            <span><a href="mailto:lauren.garvey@dentwizard.com?Subject=Fron%20Dent%20Wizard%20App:">lauren.garvey@dentwizard.com</a></span>.
+        </p>
       </ion-col>
     </ion-row>
   </ion-grid>

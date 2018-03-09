@@ -17,6 +17,9 @@
 
 
 <ion-content class="main-content">
+  
+  <component-loader *ngIf="showLoader"></component-loader>
+
   <ion-list class="compCard one-line-list">
       <div class="one-line-list__item" *ngFor="let item of company">
         <div class="text-area">

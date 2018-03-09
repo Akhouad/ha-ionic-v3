@@ -20,6 +20,7 @@ import {GlobalVars} from '../common/globalVars';
 export class CompaniesPage {
 
   protected company: any;
+  showLoader: Boolean = true
   
   constructor(
     public navCtrl: NavController,
@@ -29,6 +30,7 @@ export class CompaniesPage {
   ) {
     this.crudProvider.getIndex('companies?', GlobalVars.profile.token)
       .subscribe(data => {
+        this.showLoader = false
         this.company = data.companies;
         GlobalVars.companies = this.company;
         if(GlobalVars.companies.length == 1){

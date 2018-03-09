@@ -185,5 +185,14 @@ export class HomePage {
       }
     }
   }
+  
+  /**
+   * open web site and register url
+   * @param url
+   * @return void
+   */
+  openWebBrowser(url) {
+    this.iab.create(url, "_blank", this.options);
+  }
 
 }

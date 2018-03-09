@@ -239,7 +239,7 @@ export class GlobalProvider {
   private createLoading(){
     return this.loadingCtrl.create({
         content: 'Loading Please Wait...',
-        enableBackdropDismiss: true
+        enableBackdropDismiss: false
       });
   }
 

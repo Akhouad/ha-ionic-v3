@@ -7,7 +7,7 @@ import {CrudProvider} from "../providers/crud/crud";
 import {GlobalVars} from '../pages/common/globalVars';
 import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import {AppVersion} from '@ionic-native/app-version';
-import {Intercom} from '@ionic-native/intercom';
+// import {Intercom} from '@ionic-native/intercom';
 import {Keyboard} from '@ionic-native/keyboard';
 import {GlobalProvider} from "../providers/global/global";
 import {BarcodeScanner, BarcodeScannerOptions} from "@ionic-native/barcode-scanner";
@@ -100,7 +100,7 @@ export class MyApp {
     public events: Events,
     public alertCtrl: AlertController,
     private appVersion: AppVersion,
-    private intercom: Intercom,
+    // private intercom: Intercom,
     private camera: Camera,
     private iab: InAppBrowser,
     private keyboard: Keyboard,
@@ -242,7 +242,7 @@ export class MyApp {
       userType: ''
     };
     // reset intercom
-    this.intercom.reset();
+    // this.intercom.reset();
     this.storage.set("profile", JSON.stringify(GlobalVars.profile));
     GlobalVars.event_id = null;
     GlobalVars.company_id = null;
@@ -497,7 +497,7 @@ export class MyApp {
    * @return void
    */
   openIntercomChat() {
-    this.intercom.displayMessenger();
+    // this.intercom.displayMessenger();
   }
   
   /**

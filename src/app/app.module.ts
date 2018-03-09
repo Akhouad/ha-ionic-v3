@@ -60,7 +60,7 @@ import { CrudProvider } from '../providers/crud/crud';
 import { HTTP } from "@ionic-native/http";
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
-import { Intercom } from '@ionic-native/intercom';
+// import { Intercom } from '@ionic-native/intercom';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import {AppVersion} from '@ionic-native/app-version';
 import { SearchProvider } from '../providers/search/search';
@@ -170,7 +170,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     AuthProvider,
     CrudProvider,
     HTTP,
-    Intercom,
+    // Intercom,
     InAppBrowser,
     AppVersion,
     SearchProvider,
